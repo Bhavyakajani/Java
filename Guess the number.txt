@@ -1,0 +1,94 @@
+import java.util.Scanner;
+import java.util.Random;
+
+
+class Guess_Game
+{
+    public int n;
+    private int guesses;
+    private int number;
+    boolean playgame=true;
+    public Guess_Game()
+    {
+        Random rand=new Random();
+        n=rand.nextInt(101); 
+    }
+    
+    public void takeuserInput()
+    {
+        System.out.println("\nEnter the number you want to input");
+        Scanner sc = new Scanner(System.in);
+        number=sc.nextInt();
+    }
+    
+    public void set_number_Of_Guesses()
+    {
+        guesses++;
+    }
+    public int get_number_Of_Guesses()
+    {
+        return guesses;
+    }
+    public void display()
+    {
+        System.out.println("\t---------- Guess the number : -----------");
+        System.out.println("\n\n** The number of Guesses you make is your score **");
+        System.out.println("** The lesser the number, the better **");
+        
+        System.out.println("--------------------");
+        
+    }
+    
+    public boolean isCorrect()
+    {
+        if(n==number)
+        {
+            System.out.println("You guessed it !!");
+            System.out.println("Number of guesses :");
+            set_number_Of_Guesses();
+            System.out.println(get_number_Of_Guesses());
+            return true;
+            
+            
+        }
+        else if(number<n)
+        {
+            System.out.println("Enter a larger number");
+            set_number_Of_Guesses();
+            return false;
+            
+        }
+        else{
+            System.out.println("Enter a smaller number");
+            set_number_Of_Guesses();
+            return false;
+            }
+        
+    }
+    public  void Logic(){
+        while(playgame==true)
+        {
+            takeuserInput();
+            if(isCorrect())
+            {
+            playgame=false;
+            break;
+            }
+            else{
+                playgame=true;
+            }
+        }
+    }
+}
+public class Main 
+{
+    public static void main(String args[])
+    {
+        Guess_Game obj=new Guess_Game();
+        obj.display();
+        //System.out.println(obj.n);
+        obj.Logic();
+        
+        System.out.println("Congratulations !!");
+    }
+}
