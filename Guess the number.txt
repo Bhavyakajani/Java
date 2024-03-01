@@ -5,11 +5,13 @@ import java.util.Random;
 class Guess_Game
 {
     public int n;
-    private int guesses;
-    private int number;
-    boolean playgame=true;
+    private int guesses, number;
+    private boolean playgame;
+    private Scanner sc;
     public Guess_Game()
     {
+        sc = new Scanner(System.in)
+        playgame=true;
         Random rand=new Random();
         n=rand.nextInt(101); 
     }
@@ -17,7 +19,6 @@ class Guess_Game
     public void takeuserInput()
     {
         System.out.println("\nEnter the number you want to input");
-        Scanner sc = new Scanner(System.in);
         number=sc.nextInt();
     }
     
@@ -41,29 +42,20 @@ class Guess_Game
     
     public boolean isCorrect()
     {
+        set_number_Of_Guesses();
         if(n==number)
         {
             System.out.println("You guessed it !!");
             System.out.println("Number of guesses :");
-            set_number_Of_Guesses();
             System.out.println(get_number_Of_Guesses());
-            return true;
-            
-            
+            return true;   
         }
         else if(number<n)
-        {
             System.out.println("Enter a larger number");
-            set_number_Of_Guesses();
-            return false;
-            
-        }
-        else{
+        else
             System.out.println("Enter a smaller number");
-            set_number_Of_Guesses();
-            return false;
-            }
-        
+            
+        return false;
     }
     public  void Logic(){
         while(playgame==true)
@@ -72,7 +64,7 @@ class Guess_Game
             if(isCorrect())
             {
             playgame=false;
-            break;
+            //break;
             }
             else{
                 playgame=true;
