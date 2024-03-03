@@ -1,4 +1,5 @@
-# Java
-Just basic OOP implemented codes
+Practice of OOP in Java.
+
+Rock, Paper, Scissors!!!!
 
 
